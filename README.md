@@ -4,7 +4,7 @@ Production-oriented MERN society and apartment management platform, built module
 
 ## Current Build Status
 
-Module 4 complete: backend staff and domestic help management APIs are implemented on top of the security, visitor, and auth foundation.
+Module 5 complete: backend billing, accounting, expenses, invoice PDFs, and Razorpay payment verification are implemented.
 
 ## Local Development
 
@@ -210,4 +210,51 @@ Privacy note:
 ```txt
 Resident responses only include wage records for the resident's own flat.
 Admins can see the full staff profile.
+```
+
+## Module 5 API Checklist
+
+Bills and invoices:
+
+```txt
+GET  /api/v1/bills
+POST /api/v1/bills/generate
+GET  /api/v1/bills/:id/invoice-pdf
+```
+
+Payments:
+
+```txt
+POST /api/v1/payments/create-order
+POST /api/v1/payments/verify
+POST /api/v1/payments/webhook
+```
+
+Expenses:
+
+```txt
+GET  /api/v1/expenses
+POST /api/v1/expenses
+```
+
+Supported flows:
+
+```txt
+Admin bill generation for all flats or selected flats
+Resident bill listing scoped to their own flat
+Overdue bill status recalculation on bill listing
+PDF invoice/receipt download
+Razorpay order creation through paymentService
+Razorpay client payment signature verification
+Razorpay webhook HMAC verification using raw request body
+Payment captured -> bill marked paid -> notification + socket event
+Admin expense tracking with filters and pagination
+```
+
+Payment security note:
+
+```txt
+Payment status is never accepted from the client.
+Client verification uses razorpay_order_id + razorpay_payment_id + razorpay_signature.
+Webhook verification uses the x-razorpay-signature header over the raw JSON body.
 ```
