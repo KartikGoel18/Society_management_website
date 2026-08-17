@@ -4,7 +4,7 @@ Production-oriented MERN society and apartment management platform, built module
 
 ## Current Build Status
 
-Module 5 complete: backend billing, accounting, expenses, invoice PDFs, and Razorpay payment verification are implemented.
+Module 6 complete: backend helpdesk and complaints APIs are implemented.
 
 ## Local Development
 
@@ -257,4 +257,30 @@ Payment security note:
 Payment status is never accepted from the client.
 Client verification uses razorpay_order_id + razorpay_payment_id + razorpay_signature.
 Webhook verification uses the x-razorpay-signature header over the raw JSON body.
+```
+
+## Module 6 API Checklist
+
+Complaints:
+
+```txt
+POST  /api/v1/complaints
+GET   /api/v1/complaints
+PATCH /api/v1/complaints/:id/status
+POST  /api/v1/complaints/:id/comment
+POST  /api/v1/complaints/:id/feedback
+```
+
+Supported flows:
+
+```txt
+Resident/admin complaint creation with photos
+Resident list scoping to own flat
+Admin/guard society-wide complaint listing
+Status lifecycle: open -> in_progress -> resolved -> closed
+Assignment to society admin/guard users or staff records
+Comment threads with attachments and internal comments
+SLA deadline tracking
+Resident rating/feedback after resolution
+Notification and socket events for complaint updates
 ```
