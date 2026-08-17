@@ -4,7 +4,7 @@ Production-oriented MERN society and apartment management platform, built module
 
 ## Current Build Status
 
-Module 3 complete: backend security and guard operations APIs are implemented on top of the visitor and auth foundation.
+Module 4 complete: backend staff and domestic help management APIs are implemented on top of the security, visitor, and auth foundation.
 
 ## Local Development
 
@@ -175,4 +175,39 @@ Security note:
 ```txt
 Patrol checkpoint QR tokens are returned only on creation.
 Only QR token hashes are stored in MongoDB.
+```
+
+## Module 4 API Checklist
+
+Staff directory:
+
+```txt
+GET  /api/v1/staff
+POST /api/v1/staff
+```
+
+Attendance, reviews, and wages:
+
+```txt
+POST /api/v1/staff/:id/attendance
+POST /api/v1/staff/:id/reviews
+POST /api/v1/staff/:id/wages
+```
+
+Supported flows:
+
+```txt
+Admin/guard staff registration with ID proof/photo URL fields
+Society-wide active staff directory with filters and pagination
+Flat assignment enforcement for attendance, reviews, and resident wage records
+Staff check-in/check-out attendance history
+Resident ratings and reviews with average rating recalculation
+Resident wage tracking per staff member and flat
+```
+
+Privacy note:
+
+```txt
+Resident responses only include wage records for the resident's own flat.
+Admins can see the full staff profile.
 ```
