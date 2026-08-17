@@ -14,4 +14,4 @@ Thumbs.db
 uploads/
 logs/
 *.log
-.env.example
+

@@ -1,5 +1,9 @@
 import { Router } from 'express';
 import { authRoutes } from './auth.routes.js';
+import { alertRoutes } from './alert.routes.js';
+import { guardRoutes } from './guard.routes.js';
+import { incidentRoutes } from './incident.routes.js';
+import { patrolRoutes } from './patrol.routes.js';
 import { societyRoutes } from './society.routes.js';
 import { userRoutes } from './user.routes.js';
 import { visitorRoutes } from './visitor.routes.js';
@@ -7,6 +11,10 @@ import { visitorRoutes } from './visitor.routes.js';
 export const apiRoutes = Router();
 
 apiRoutes.use('/auth', authRoutes);
+apiRoutes.use('/alerts', alertRoutes);
+apiRoutes.use('/guards', guardRoutes);
+apiRoutes.use('/incidents', incidentRoutes);
+apiRoutes.use('/patrol', patrolRoutes);
 apiRoutes.use('/societies', societyRoutes);
 apiRoutes.use('/users', userRoutes);
 apiRoutes.use('/visitors', visitorRoutes);

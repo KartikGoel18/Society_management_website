@@ -4,7 +4,7 @@ Production-oriented MERN society and apartment management platform, built module
 
 ## Current Build Status
 
-Module 1 complete: backend authentication, onboarding, society, tower, flat, user foundation, service boundaries, and initial tests.
+Module 3 complete: backend security and guard operations APIs are implemented on top of the visitor and auth foundation.
 
 ## Local Development
 
@@ -104,3 +104,75 @@ PUT /api/v1/users/:id/approve
 ```
 
 Security note: public registration is resident-only. Admin and guard accounts are seeded for development now and should be provisioned through protected admin flows in later modules.
+
+## Module 2 API Checklist
+
+Visitors:
+
+```txt
+GET   /api/v1/visitors
+POST  /api/v1/visitors/pre-approve
+POST  /api/v1/visitors/walk-in
+PATCH /api/v1/visitors/:id/respond
+POST  /api/v1/visitors/:id/checkin
+POST  /api/v1/visitors/:id/checkout
+```
+
+Supported flows:
+
+```txt
+Resident pre-approval -> OTP/QR pass -> guard check-in -> guard check-out
+Guard walk-in request -> resident approve/reject -> guard check-in
+Delivery leave-at-gate status for approved delivery requests
+Visitor history filtering by flat, date range, visitor type, status, and search text
+```
+
+Visitor pass security:
+
+```txt
+OTP and QR token values are returned only at pass creation time.
+Only hashes are stored in MongoDB.
+VisitorLog snapshots also exclude pass hashes.
+```
+
+## Module 3 API Checklist
+
+Guard shifts:
+
+```txt
+POST /api/v1/guards/:id/shift
+POST /api/v1/guards/me/shift
+```
+
+Patrol:
+
+```txt
+GET  /api/v1/patrol/checkpoints
+POST /api/v1/patrol/checkpoints
+POST /api/v1/patrol/log
+```
+
+Alerts and incidents:
+
+```txt
+POST /api/v1/alerts/sos
+GET  /api/v1/incidents
+POST /api/v1/incidents
+```
+
+Supported flows:
+
+```txt
+Guard shift check-in/check-out with shift log history
+Admin-created patrol checkpoints with QR payload generation
+Guard QR patrol scan logging while on duty
+Resident/guard/admin SOS alerts broadcast to society admins and guards
+Guard/admin incident reporting with photo URL support
+```
+
+Security note:
+
+```txt
+Patrol checkpoint QR tokens are returned only on creation.
+Only QR token hashes are stored in MongoDB.
+```
